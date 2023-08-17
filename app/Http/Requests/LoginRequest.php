@@ -21,6 +21,7 @@ class LoginRequest extends FormRequest
      */
     public function rules(): array
     {
+        //! our rules to accept login data
         return [
             'email' => 'required|email|string|exists:users,email',
             'password' => [

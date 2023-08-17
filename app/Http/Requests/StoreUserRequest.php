@@ -22,6 +22,8 @@ class StoreUserRequest extends FormRequest
      */
     public function rules(): array
     {
+                //! our rules to accept new user data
+
         return [
             'name' =>  'required|string|max:30',
             'email' =>  'required|email|unique:users,email',

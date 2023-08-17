@@ -12,6 +12,9 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
+    //? create custtom request to validate data
+    //? crypt password
+    //? create tokin
     public function signup(SignupRequest $request)
     {
         $data = $request->validated();
@@ -28,6 +31,9 @@ class AuthController extends Controller
         return response(compact('user', 'token'));
     }
 
+    //? create custtom request to validate data
+    //? check database
+    //? create tokin
     public function login(LoginRequest $request)
     {
         $credentials = $request->validated();
@@ -43,6 +49,8 @@ class AuthController extends Controller
         return response(compact('user', 'token'));
     }
 
+
+    //? destroy token
     public function logout(Request $request)
     {
         /** @var \App\Models\User $user */

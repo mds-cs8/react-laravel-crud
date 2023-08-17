@@ -14,12 +14,12 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        //* show user (all user / 5 = page) the page = 5 record order by ID 
         return UserResource::collection(User::query()->orderBy('id', 'asc')->paginate(5));
     }
     public function all()
     {
-        //
+        //* show all users
         return User::all();
     }
 
@@ -47,6 +47,7 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
+    //? update data
     public function update(UpdateUserRequest $request, User $user)
     {
         $data = $request->validated();
@@ -61,6 +62,7 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
+    //? delete data
     public function destroy(User $user)
     {
         $user->delete();
