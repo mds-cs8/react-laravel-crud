@@ -11,10 +11,15 @@ import { useStateContext } from "../context/ContextProviader";
 import AxiosClient from "../AxiosClient";
 // ? ---------------END IMPORT LIBRARY , COMPONENTS , CONTEXTS ---------------------------
 export default function MainLayout() {
-  const { token, setUser, setToken } = useStateContext();
+  const { user, token, setUser, setToken } = useStateContext();
   const [showNav, setShowNav] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
 
+  useEffect(() => {
+    document.title = `${
+      user.name ? "RAKAYA | " + user.name : "RAKAYA | SYSTEM"
+    } `;
+  }, [user]);
   // * check if user has token to enter this page
   if (!token) {
     return <Navigate to={"/login"} />;
@@ -84,6 +89,7 @@ export default function MainLayout() {
         <SideBar
           // @ts-ignore
           showNav={showNav}
+          setShowNav={setShowNav}
         />
       </Transition>
       <main
@@ -91,7 +97,7 @@ export default function MainLayout() {
           showNav && !isMobile ? "pl-56" : ""
         }`}
       >
-        <div className="px-4 md:px-16">
+        <div className="px-4 md:px-16 w-full h-screen flex flex-col justify-center items-center">
           <Outlet />
         </div>
       </main>

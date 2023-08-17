@@ -1,11 +1,14 @@
-// @ts-ignore
 import { NavLink } from "react-router-dom";
 import AxiosClient from "../AxiosClient";
-import { createRef, useState } from "react";
-import { useStateContext } from "../context/ContextProviader.jsx";
+import {createRef, useEffect, useState} from "react";
 import { Alert } from "@mui/material";
+import {useStateContext} from "../context/ContextProviader.jsx";
 
 export default function Login() {
+  useEffect(()=>{
+    document.title="RAKAYA | LOGIN";
+
+  },[])
   const [errorMsg, setErrorMsg] = useState(null);
   const { setUser, setToken } = useStateContext();
   const emailRef = createRef();

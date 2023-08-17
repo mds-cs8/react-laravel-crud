@@ -3,12 +3,12 @@ import { forwardRef } from "react";
 import { UserIcon } from "@heroicons/react/24/solid";
 import logo from "../assets/logo.png";
 import { NavLink } from "react-router-dom";
-const SideBar = forwardRef(({ showNav }, ref) => {
+const SideBar = forwardRef(({ showNav, setShowNav }, ref) => {
   function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
   }
   return (
-    <div ref={ref} className="fixed w-56 h-full bg-white sha">
+    <div ref={ref} className="fixed w-56 h-full bg-white z-50">
       <div className="flex justify-center mt-6 mb-14">
         <picture>
           <img className="w-32 h-auto" src={logo} alt="logo" />
@@ -36,6 +36,7 @@ const SideBar = forwardRef(({ showNav }, ref) => {
 
         <NavLink
           to="/users"
+          title={"user"}
           className={({ isActive }) =>
             classNames(
               isActive

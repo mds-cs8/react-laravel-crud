@@ -4,15 +4,20 @@
 import { Alert } from "@mui/material";
 import AxiosClient from "../AxiosClient";
 import { useStateContext } from "../context/ContextProviader";
-import { createRef, useState } from "react";
+import { createRef, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 export default function Signup() {
+  useEffect(() => {
+    document.title = "RAKAYA | SIGN UP";
+  }, []);
   const [errorMsg, setErrorMsg] = useState(null);
   // @ts-ignore
   const { setUser, setToken } = useStateContext();
   const nameRef = createRef();
   const emailRef = createRef();
   const passwordRef = createRef();
+  const ageRef = createRef();
+  const sexRef = createRef();
   const passwordConfirmationRef = createRef();
   const onSubmit = (e) => {
     e.preventDefault();
@@ -22,6 +27,9 @@ export default function Signup() {
       name: nameRef.current.value,
       // @ts-ignore
       email: emailRef.current.value,
+      age: ageRef.current.value,
+      sex: sexRef.current.value,
+
       // @ts-ignore
       password: passwordRef.current.value,
       // @ts-ignore
@@ -68,13 +76,13 @@ export default function Signup() {
                 onSubmit(e);
               }}
             >
-              <div className="relative">
+              <div className="relative flex justify-between">
                 <input
                   ref={nameRef}
                   id="name"
                   name="name"
                   type="text"
-                  className="peer h-10 w-full border-b-2 border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-rose-600"
+                  className="peer h-10 w-[48%] border-b-2 border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-rose-600"
                   placeholder="ahmed"
                 />
                 <label
@@ -82,6 +90,21 @@ export default function Signup() {
                   className="absolute left-0 -top-3.5 text-gray-600 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm"
                 >
                   name
+                </label>
+
+                <input
+                  ref={ageRef}
+                  id="age"
+                  name="age"
+                  type="number"
+                  className="peer h-10 w-[48%] border-b-2 border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-rose-600"
+                  placeholder=""
+                />
+                <label
+                  htmlFor="age"
+                  className="absolute left-[52%] -top-3.5 text-gray-600 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm"
+                >
+                  age
                 </label>
               </div>
               <div className="mt-10 relative">
@@ -100,13 +123,15 @@ export default function Signup() {
                   Email address
                 </label>
               </div>
-              <div className="mt-10 relative">
+
+              <div className="mt-10 relative w-full flex justify-between">
                 <input
                   ref={passwordRef}
                   id="password"
-                  type="password"
                   name="password"
-                  className="peer h-10 w-full border-b-2 border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-rose-600"
+                  type="password"
+                  className="peer h-10 w-[48%] border-b-2 border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-rose-600"
+                  placeholder=""
                 />
                 <label
                   htmlFor="password"
@@ -114,21 +139,34 @@ export default function Signup() {
                 >
                   Password
                 </label>
-              </div>
-              <div className="my-10 relative">
+
                 <input
                   ref={passwordConfirmationRef}
+                  id="password_confirmation"
+                  name="password_confirmation"
                   type="password"
-                  name="password_Confirmation"
-                  className="peer h-10 w-full border-b-2 border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-rose-600"
+                  className="peer h-10 w-[48%] border-b-2  border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-rose-600"
+                  placeholder=""
                 />
                 <label
-                  htmlFor="password_Confirmation"
-                  className="absolute left-0 -top-3.5 text-gray-600 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm"
+                  htmlFor="password_confirmation"
+                  className="absolute left-[52%] -top-3.5 text-gray-600 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm"
                 >
-                  Password Confirmation
+                  re-password
                 </label>
               </div>
+              <div className="mt-10  ">
+                <select
+                  ref={sexRef}
+                  name="sex"
+                  id="sex"
+                  className="peer h-10 w-[48%] border-b-2  border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-rose-600"
+                >
+                  <option value="male">male</option>
+                  <option value="female">female</option>
+                </select>
+              </div>
+
               {errorMsg && (
                 <Alert variant="filled" severity="error" sx={{ width: "100%" }}>
                   {Object.keys(errorMsg).map((key) => (

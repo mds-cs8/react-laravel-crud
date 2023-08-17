@@ -6,6 +6,7 @@ import GuestLayout from "./components/GuestLayout";
 import MainLayout from "./components/MainLayout";
 import Dashboard from "./views/Dashboard";
 import NotFound from "./views/NotFound";
+import UserForm from "./views/UserForm";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -14,6 +15,14 @@ const router = createBrowserRouter([
       {
         path: "/users",
         element: <Users />,
+      },
+      {
+        path: "/users/add",
+        element: <UserForm key={"add"} />,
+      },
+      {
+        path: "/users/:id",
+        element: <UserForm key={"id"} />,
       },
       {
         path: "/dashboard",

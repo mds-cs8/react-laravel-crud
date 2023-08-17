@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-// @ts-nocheck
 // ? --------------- IMPORT LIBRARY , COMPONENTS , CONTEXTS ---------------------------
 import { Bars3CenterLeftIcon } from "@heroicons/react/24/solid";
 import Chip from "@mui/material/Chip";
@@ -11,7 +9,7 @@ import AxiosClient from "../AxiosClient";
 
 // eslint-disable-next-line react/prop-types
 export default function NavBar({ showNav, setShowNav, logout }) {
-  const { user, setUser, setToken } = useStateContext();
+  const { user, setUser } = useStateContext();
 
   useEffect(() => {
     AxiosClient.get("/user").then(({ data }) => {
@@ -21,7 +19,7 @@ export default function NavBar({ showNav, setShowNav, logout }) {
 
   return (
     <div
-      className={`bg-white shadow-lg fixed w-full h-16 flex justify-between items-center transition-all duration-[400ms] ${
+      className={`bg-white z-40 shadow-lg fixed w-full h-16 flex justify-between items-center transition-all duration-[400ms] ${
         showNav ? "pl-56" : ""
       }`}
     >
@@ -31,7 +29,7 @@ export default function NavBar({ showNav, setShowNav, logout }) {
           onClick={() => setShowNav(!showNav)}
         />
       </div>
-      <div className="flex items-center pr-4 md:pr-16 gap-4 ">
+      <div className="flex items-center pr-4 md:pr-16 gap-4  ">
         <Chip
           className="hover:shadow-md"
           onClick={(e) => {
